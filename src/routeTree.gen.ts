@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as GalerieRouteImport } from './routes/galerie'
+import { Route as LaCarteRouteImport } from './routes/la-carte'
+import { Route as LeClubRouteImport } from './routes/le-club'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalerieRoute = GalerieRouteImport.update({
+  id: '/galerie',
+  path: '/galerie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LaCarteRoute = LaCarteRouteImport.update({
+  id: '/la-carte',
+  path: '/la-carte',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeClubRoute = LeClubRouteImport.update({
+  id: '/le-club',
+  path: '/le-club',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/galerie': typeof GalerieRoute
+  '/la-carte': typeof LaCarteRoute
+  '/le-club': typeof LeClubRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/galerie': typeof GalerieRoute
+  '/la-carte': typeof LaCarteRoute
+  '/le-club': typeof LeClubRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/galerie': typeof GalerieRoute
+  '/la-carte': typeof LaCarteRoute
+  '/le-club': typeof LeClubRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/contact' | '/galerie' | '/la-carte' | '/le-club'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/contact' | '/galerie' | '/la-carte' | '/le-club'
+  id: '__root__' | '/' | '/contact' | '/galerie' | '/la-carte' | '/le-club'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  GalerieRoute: typeof GalerieRoute
+  LaCarteRoute: typeof LaCarteRoute
+  LeClubRoute: typeof LeClubRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galerie': {
+      id: '/galerie'
+      path: '/galerie'
+      fullPath: '/galerie'
+      preLoaderRoute: typeof GalerieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/la-carte': {
+      id: '/la-carte'
+      path: '/la-carte'
+      fullPath: '/la-carte'
+      preLoaderRoute: typeof LaCarteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/le-club': {
+      id: '/le-club'
+      path: '/le-club'
+      fullPath: '/le-club'
+      preLoaderRoute: typeof LeClubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  GalerieRoute: GalerieRoute,
+  LaCarteRoute: LaCarteRoute,
+  LeClubRoute: LeClubRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
