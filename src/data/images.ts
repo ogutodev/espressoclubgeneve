@@ -7,6 +7,9 @@ import wine from "../assets/DSC03665.JPG.asset.json";
 import clock from "../assets/DSC03668.JPG.asset.json";
 import cars from "../assets/DSC03673.JPG.asset.json";
 import portraits from "../assets/DSC03674.JPG.asset.json";
+import pizzaEditorial from "../assets/pizza-editorial.jpg";
+import drinksEditorial from "../assets/drinks-editorial.jpg";
+import goodTimesEditorial from "../assets/good-times-editorial.jpg";
 
 export const images = {
   roomWide: roomWide.url,
@@ -18,9 +21,15 @@ export const images = {
   clock: clock.url,
   cars: cars.url,
   portraits: portraits.url,
+  pizza: pizzaEditorial,
+  drinks: drinksEditorial,
+  goodTimes: goodTimesEditorial,
 };
 
 export const galleryImages = [
+  { src: images.pizza, category: "pizza", alt: "Pizza à la burrata servie le soir" },
+  { src: images.goodTimes, category: "people", alt: "Amis partageant une pizza et un verre" },
+  { src: images.drinks, category: "drinks", alt: "Cocktail servi au bar" },
   { src: images.roomWide, category: "atmosphere", alt: "La salle d’Espresso Club aux Pâquis" },
   { src: images.tableDetail, category: "food", alt: "Table dressée pour le dîner" },
   { src: images.beerTap, category: "drinks", alt: "Tireuse à bière au bar" },
