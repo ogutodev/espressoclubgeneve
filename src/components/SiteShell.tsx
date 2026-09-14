@@ -40,16 +40,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return <LanguageContext.Provider value={{ locale, t, setLocale }}>
     <header className={`site-header ${scrolled || pathname !== "/" ? "site-header--solid" : ""}`}>
-      <Link to="/" className="brand" aria-label="Espresso Club — accueil"><span>ESPRESSO</span><span>CLUB</span></Link>
-      <nav className="desktop-nav" aria-label="Navigation principale">
+      <Link to="/" className="brand" aria-label={t.a11y.homeLink}><span>ESPRESSO</span><span>CLUB</span></Link>
+      <nav className="desktop-nav" aria-label={t.a11y.mainNav}>
         {links.map(([to,label]) => <Link key={to} to={to} activeOptions={{ exact: to === "/" }} activeProps={{ className: "active" }}>{label}</Link>)}
       </nav>
       <div className="header-actions">
         <LanguageSwitcher compact />
         <a className="button button-small" href={businessConfig.googleMaps} target="_blank" rel="noreferrer"><MapPin size={15}/>{t.nav.find}</a>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? t.common.close : "Menu"} aria-expanded={menuOpen}>{menuOpen ? <X/> : <Menu/>}</button>
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? t.common.close : t.common.menuLabel} aria-expanded={menuOpen}>{menuOpen ? <X/> : <Menu/>}</button>
       </div>
-      {menuOpen && <nav className="mobile-nav" aria-label="Navigation mobile">
+      {menuOpen && <nav className="mobile-nav" aria-label={t.a11y.mobileNav}>
         {links.map(([to,label]) => <Link key={to} to={to}>{label}</Link>)}
         <LanguageSwitcher />
       </nav>}
@@ -64,8 +64,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
 }
 
 export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
-  const { locale, setLocale } = useLanguage();
-  return <div className={`language-switcher ${compact ? "language-switcher--compact" : ""}`} aria-label="Language">
+  const { locale, setLocale, t } = useLanguage();
+  return <div className={`language-switcher ${compact ? "language-switcher--compact" : ""}`} aria-label={t.a11y.language}>
     {(["fr","en","pt"] as Locale[]).map((lang) => <button key={lang} className={locale === lang ? "active" : ""} onClick={() => setLocale(lang)} aria-pressed={locale === lang}>{lang.toUpperCase()}</button>)}
   </div>;
 }
