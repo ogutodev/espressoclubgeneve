@@ -1,33 +1,23 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, MapPin, Phone } from "lucide-react";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { businessConfig } from "../data/businessConfig";
 import type { Locale } from "../data/menuData";
-import { isLocale, translations, type Translation } from "../translations";
+import { LanguageProvider, useLanguage } from "../lib/language";
 
-type LanguageContextValue = { locale: Locale; t: Translation; setLocale: (locale: Locale) => void };
-const LanguageContext = createContext<LanguageContextValue | null>(null);
-
-export function useLanguage() {
-  const value = useContext(LanguageContext);
-  if (!value) throw new Error("useLanguage must be used within SiteShell");
-  return value;
-}
+export { useLanguage };
 
 export function SiteShell({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("fr");
+  return <LanguageProvider><ShellInner>{children}</ShellInner></LanguageProvider>;
+}
+
+function ShellInner({ children }: { children: ReactNode }) {
+  const { t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("espresso-locale");
-    if (isLocale(stored)) {
-      setLocaleState(stored);
-      document.documentElement.lang = stored;
-    } else {
-      document.documentElement.lang = "fr";
-    }
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
