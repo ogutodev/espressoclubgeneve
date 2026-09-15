@@ -25,12 +25,6 @@ function ShellInner({ children }: { children: ReactNode }) {
   }, []);
   useEffect(() => setMenuOpen(false), [pathname]);
 
-  const setLocale = (next: Locale) => {
-    setLocaleState(next);
-    window.localStorage.setItem("espresso-locale", next);
-    document.documentElement.lang = next;
-  };
-  const t = translations[locale] as Translation;
   const links = [["/", t.nav.home], ["/le-club", t.nav.club], ["/la-carte", t.nav.menu], ["/galerie", t.nav.gallery], ["/contact", t.nav.contact]] as const;
 
   return <LanguageContext.Provider value={{ locale, t, setLocale }}>
