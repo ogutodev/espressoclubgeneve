@@ -1,33 +1,23 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, MapPin, Phone } from "lucide-react";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { businessConfig } from "../data/businessConfig";
 import type { Locale } from "../data/menuData";
-import { isLocale, translations, type Translation } from "../translations";
+import { LanguageProvider, useLanguage } from "../lib/language";
 
-type LanguageContextValue = { locale: Locale; t: Translation; setLocale: (locale: Locale) => void };
-const LanguageContext = createContext<LanguageContextValue | null>(null);
-
-export function useLanguage() {
-  const value = useContext(LanguageContext);
-  if (!value) throw new Error("useLanguage must be used within SiteShell");
-  return value;
-}
+export { useLanguage };
 
 export function SiteShell({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("fr");
+  return <LanguageProvider><ShellInner>{children}</ShellInner></LanguageProvider>;
+}
+
+function ShellInner({ children }: { children: ReactNode }) {
+  const { t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("espresso-locale");
-    if (isLocale(stored)) {
-      setLocaleState(stored);
-      document.documentElement.lang = stored;
-    } else {
-      document.documentElement.lang = "fr";
-    }
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -35,15 +25,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
   }, []);
   useEffect(() => setMenuOpen(false), [pathname]);
 
-  const setLocale = (next: Locale) => {
-    setLocaleState(next);
-    window.localStorage.setItem("espresso-locale", next);
-    document.documentElement.lang = next;
-  };
-  const t = translations[locale] as Translation;
   const links = [["/", t.nav.home], ["/le-club", t.nav.club], ["/la-carte", t.nav.menu], ["/galerie", t.nav.gallery], ["/contact", t.nav.contact]] as const;
 
-  return <LanguageContext.Provider value={{ locale, t, setLocale }}>
+  return <>
     <header className={`site-header ${scrolled || pathname !== "/" ? "site-header--solid" : ""}`}>
       <Link to="/" className="brand" aria-label={t.a11y.homeLink}><span>ESPRESSO</span><span>CLUB</span></Link>
       <nav className="desktop-nav" aria-label={t.a11y.mainNav}>
@@ -65,7 +49,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <a href={businessConfig.phoneHref}><Phone size={17}/>{t.common.call}</a>
       <a href={businessConfig.googleMaps} target="_blank" rel="noreferrer"><MapPin size={17}/>{t.common.directions}</a>
     </div>
-  </LanguageContext.Provider>;
+  </>;
 }
 
 export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
