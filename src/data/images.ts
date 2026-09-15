@@ -10,6 +10,12 @@ import portraits from "../assets/DSC03674.JPG.asset.json";
 import pizzaEditorial from "../assets/pizza-editorial.jpg";
 import drinksEditorial from "../assets/drinks-editorial.jpg";
 import goodTimesEditorial from "../assets/good-times-editorial.jpg";
+import pizzaReal01 from "../assets/espresso-pizza-01.webp.asset.json";
+import pizzaReal02 from "../assets/espresso-pizza-02.webp.asset.json";
+import pizzaReal03 from "../assets/espresso-pizza-03.webp.asset.json";
+import pizzaReal04 from "../assets/espresso-pizza-04.webp.asset.json";
+import pizzaReal05 from "../assets/espresso-pizza-05.webp.asset.json";
+import pizzaReal06 from "../assets/espresso-pizza-06.webp.asset.json";
 
 export const images = {
   roomWide: roomWide.url,
@@ -26,17 +32,26 @@ export const images = {
   goodTimes: goodTimesEditorial,
 };
 
+export const realPizzaImages = [
+  pizzaReal03.url,
+  pizzaReal05.url,
+  pizzaReal02.url,
+  pizzaReal04.url,
+  pizzaReal06.url,
+  pizzaReal01.url,
+] as const;
+
 export const galleryImages = [
-  { src: images.pizza, category: "pizza", alt: "Pizza à la burrata servie le soir" },
-  { src: images.goodTimes, category: "people", alt: "Amis partageant une pizza et un verre" },
-  { src: images.drinks, category: "drinks", alt: "Cocktail servi au bar" },
-  { src: images.roomWide, category: "atmosphere", alt: "La salle d’Espresso Club aux Pâquis" },
-  { src: images.tableDetail, category: "food", alt: "Table dressée pour le dîner" },
-  { src: images.beerTap, category: "drinks", alt: "Tireuse à bière au bar" },
-  { src: images.roomCurve, category: "atmosphere", alt: "Le comptoir d’Espresso Club" },
-  { src: images.wine, category: "drinks", alt: "Sélection de vins au bar" },
-  { src: images.portraits, category: "people", alt: "Galerie de portraits dans la salle" },
-  { src: images.roomBar, category: "atmosphere", alt: "Vue intérieure du bar" },
-  { src: images.clock, category: "atmosphere", alt: "Horloge vintage d’Espresso Club" },
-  { src: images.cars, category: "people", alt: "Photographies encadrées du décor" },
+  ...realPizzaImages.map((src) => ({ src, category: "pizza" as const })),
+  { src: images.goodTimes, category: "people" as const },
+  { src: images.drinks, category: "drinks" as const },
+  { src: images.roomWide, category: "atmosphere" as const },
+  { src: images.tableDetail, category: "food" as const },
+  { src: images.beerTap, category: "drinks" as const },
+  { src: images.roomCurve, category: "atmosphere" as const },
+  { src: images.wine, category: "drinks" as const },
+  { src: images.portraits, category: "people" as const },
+  { src: images.roomBar, category: "atmosphere" as const },
+  { src: images.clock, category: "atmosphere" as const },
+  { src: images.cars, category: "atmosphere" as const },
 ] as const;
