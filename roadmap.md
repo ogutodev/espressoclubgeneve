@@ -1,0 +1,3 @@
+- [ ] Concluir auditoria e correção completa do sistema multilíngue FR/EN/PT
+- [ ] Integrar e priorizar as seis fotos reais de pizzas na Home, Le Club, La Carte e Galerie
+- [ ] Validar troca de idioma e fotos em todas as páginas no desktop e mobile
