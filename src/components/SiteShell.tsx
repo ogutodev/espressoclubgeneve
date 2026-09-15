@@ -49,7 +49,7 @@ function ShellInner({ children }: { children: ReactNode }) {
       <a href={businessConfig.phoneHref}><Phone size={17}/>{t.common.call}</a>
       <a href={businessConfig.googleMaps} target="_blank" rel="noreferrer"><MapPin size={17}/>{t.common.directions}</a>
     </div>
-  </LanguageContext.Provider>;
+  </>;
 }
 
 export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
