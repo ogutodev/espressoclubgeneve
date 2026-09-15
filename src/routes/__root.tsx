@@ -7,7 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -15,7 +15,7 @@ import { SiteShell } from "../components/SiteShell";
 import { isLocale, translations } from "../translations";
 
 function useSystemCopy() {
-  const [locale, setLocale] = React.useState<"fr" | "en" | "pt">("fr");
+  const [locale, setLocale] = useState<"fr" | "en" | "pt">("fr");
   useEffect(() => {
     const stored = window.localStorage.getItem("espresso-locale");
     if (isLocale(stored)) setLocale(stored);
