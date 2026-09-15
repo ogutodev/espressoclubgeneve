@@ -27,7 +27,7 @@ function ShellInner({ children }: { children: ReactNode }) {
 
   const links = [["/", t.nav.home], ["/le-club", t.nav.club], ["/la-carte", t.nav.menu], ["/galerie", t.nav.gallery], ["/contact", t.nav.contact]] as const;
 
-  return <LanguageContext.Provider value={{ locale, t, setLocale }}>
+  return <>
     <header className={`site-header ${scrolled || pathname !== "/" ? "site-header--solid" : ""}`}>
       <Link to="/" className="brand" aria-label={t.a11y.homeLink}><span>ESPRESSO</span><span>CLUB</span></Link>
       <nav className="desktop-nav" aria-label={t.a11y.mainNav}>
