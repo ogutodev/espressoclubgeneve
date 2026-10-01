@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { businessConfig } from "../data/businessConfig";
 import type { Locale } from "../data/menuData";
 import { LanguageProvider, useLanguage } from "../lib/language";
+import logoAsset from "../assets/espresso-club-logo.png.asset.json";
 
 export { useLanguage };
 
@@ -29,7 +30,7 @@ function ShellInner({ children }: { children: ReactNode }) {
 
   return <>
     <header className={`site-header ${scrolled || pathname !== "/" ? "site-header--solid" : ""}`}>
-      <Link to="/" className="brand" aria-label={t.a11y.homeLink}><span>ESPRESSO</span><span>CLUB</span></Link>
+      <Link to="/" className="brand" aria-label={t.a11y.homeLink}><img src={logoAsset.url} alt="" /></Link>
       <nav className="desktop-nav" aria-label={t.a11y.mainNav}>
         {links.map(([to,label]) => <Link key={to} to={to} activeOptions={{ exact: to === "/" }} activeProps={{ className: "active" }}>{label}</Link>)}
       </nav>
@@ -62,7 +63,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
 function Footer() {
   const { t } = useLanguage();
   return <footer className="footer">
-    <div className="footer-brand"><strong>ESPRESSO CLUB</strong><span>{t.home.strap}</span></div>
+    <div className="footer-brand"><Link to="/" aria-label={t.a11y.homeLink}><img src={logoAsset.url} alt="" /></Link><span>{t.home.strap}</span></div>
     <address>{businessConfig.address.street}<br/>{businessConfig.address.postalCode} {businessConfig.address.city}<br/><a href={businessConfig.phoneHref}>{businessConfig.phone}</a></address>
     <nav><Link to="/">{t.nav.home}</Link><Link to="/le-club">{t.nav.club}</Link><Link to="/la-carte">{t.nav.menu}</Link><Link to="/galerie">{t.nav.gallery}</Link><Link to="/contact">{t.nav.contact}</Link></nav>
     <div className="footer-meta"><LanguageSwitcher/><a href={businessConfig.instagram} target="_blank" rel="noreferrer">Instagram</a></div>
