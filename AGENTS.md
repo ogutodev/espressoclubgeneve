@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Use the official Espresso Club logo asset for brand surfaces; keep only a small derived raster in `public/` for the favicon so the full source is not shipped twice.
