@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Use the official Espresso Club logo asset for brand surfaces; keep only a small derived raster in `public/` for the favicon so the full source is not shipped twice.
+- Keep image references centralized in `src/data/images.ts` and render pizza highlights directly from `menuData` as typographic entries, so image changes cannot alter menu content.
