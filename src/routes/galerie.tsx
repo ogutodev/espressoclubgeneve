@@ -10,7 +10,7 @@ function GalleryPage(){
   const { t } = useLanguage();
   const [filter,setFilter]=useState("all");
   const [selected,setSelected]=useState<string|null>(null);
-  const filters=["all","pizza","drinks","food","people","atmosphere"] as const;
+  const filters=["all","drinks","food","people","atmosphere"] as const;
   const visible=filter==="all"?galleryImages:galleryImages.filter(x=>x.category===filter);
   return <>
     <PageHero image={images.portraits} eyebrow={t.gallery.eyebrow} title={t.gallery.title} copy={t.gallery.subtitle}/>
