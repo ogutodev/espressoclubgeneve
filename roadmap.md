@@ -1,4 +1,4 @@
 - [x] Concluir auditoria e correção completa do sistema multilíngue FR/EN/PT
-- [ ] Remover todas as fotos de pizzas na Home, Le Club, La Carte e Galerie sem substituir por stock ou IA
-- [ ] Reorganizar as áreas sem fotos e preservar integralmente o cardápio
-- [ ] Validar ausência de fotos de pizzas e leitura no computador e celular
+- [x] Remover todas as fotos de pizzas na Home, Le Club, La Carte e Galerie sem substituir por stock ou IA
+- [x] Reorganizar as áreas sem fotos e preservar integralmente o cardápio
+- [x] Validar ausência de fotos de pizzas e leitura no computador e celular
