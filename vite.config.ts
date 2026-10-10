@@ -12,4 +12,7 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Self-hosted production target (Infomaniak, Node.js 24) → .output/server/index.mjs.
+  // Inside the Lovable sandbox the config package forces its own preset, so preview/publish are unaffected.
+  nitro: { preset: "node-server" },
 });
