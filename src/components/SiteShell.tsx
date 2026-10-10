@@ -4,7 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { businessConfig } from "../data/businessConfig";
 import type { Locale } from "../data/menuData";
 import { LanguageProvider, useLanguage } from "../lib/language";
-import logoAsset from "../assets/espresso-club-logo.png.asset.json";
+const logoAsset = { url: "/images/espresso-club-logo.png" };
 
 export { useLanguage };
 

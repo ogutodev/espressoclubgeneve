@@ -1,27 +1,18 @@
-import roomWide from "../assets/DSC03647.JPG.asset.json";
-import roomBar from "../assets/DSC03653.JPG.asset.json";
-import roomCurve from "../assets/DSC03658.JPG.asset.json";
-import tableDetail from "../assets/DSC03662.JPG.asset.json";
-import beerTap from "../assets/DSC03664.JPG.asset.json";
-import wine from "../assets/DSC03665.JPG.asset.json";
-import clock from "../assets/DSC03668.JPG.asset.json";
-import cars from "../assets/DSC03673.JPG.asset.json";
-import portraits from "../assets/DSC03674.JPG.asset.json";
 import drinksEditorial from "../assets/drinks-editorial.jpg";
 
+// Original photos live in public/images so every host (Lovable or Node/Infomaniak) serves them.
 export const images = {
-  roomWide: roomWide.url,
-  roomBar: roomBar.url,
-  roomCurve: roomCurve.url,
-  tableDetail: tableDetail.url,
-  beerTap: beerTap.url,
-  wine: wine.url,
-  clock: clock.url,
-  cars: cars.url,
-  portraits: portraits.url,
+  roomWide: "/images/DSC03647.JPG",
+  roomBar: "/images/DSC03653.JPG",
+  roomCurve: "/images/DSC03658.JPG",
+  tableDetail: "/images/DSC03662.JPG",
+  beerTap: "/images/DSC03664.JPG",
+  wine: "/images/DSC03665.JPG",
+  clock: "/images/DSC03668.JPG",
+  cars: "/images/DSC03673.JPG",
+  portraits: "/images/DSC03674.JPG",
   drinks: drinksEditorial,
 };
-
 export const galleryImages = [
   { src: images.drinks, category: "drinks" as const },
   { src: images.roomWide, category: "atmosphere" as const },
